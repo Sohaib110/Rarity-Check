@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Bando">
+  <title>Bando</title>
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="logo" style="display: flex;text-align: center;margin: 0 auto;width: fit-content;">
+  <img src="images/logo.jpg" alt="Trulli" width="500" height="333">
+<h2>Rarity Check</h2>
+</div>
+  <div class="searchBar">
+    <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="420" value="" />
+  </div>
+  <div class="result">
+    <div id="positionLabelDiv">Rank </div>
+    <div id="positionValueDiv"></div>
+  </div>
+  <div class="result">
+    <div id="scoreLabelDiv">Score </div>
+    <div id="scoreValueDiv"></div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      let data = {};
+
+      // Load and parse the CSV file
+      fetch('rarity.csv')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+          }
+          return response.text();
+        })
+        .then(csvText => {
+          console.log('CSV file loaded successfully');
+          const rows = csvText.split('\n');
+          // Skip the header row
+          rows.slice(1).forEach(row => {
+            if (row.trim() === '') {
+              // Skip empty lines
+              return;
+            }
+            const columns = row.split(',');
+            if (columns.length >= 3) {
+              const fileNumber = columns[0].trim();
+              const score = columns[1].trim();
+              const position = columns[2].trim();
+              data[fileNumber] = { position, score };
+            } else {
+              console.warn('Skipping malformed row:', row);
+            }
+          });
+          console.log('CSV data parsed:', data);
+        })
+        .catch(error => {
+          console.error('Error loading CSV file:', error);
+        });
+
+      // Add event listener to the search bar
+      const searchInput = document.getElementById('searchQueryInput');
+      searchInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+          const fileNumber = searchInput.value.trim();
+          console.log('File number entered:', fileNumber);
+          const positionValueDiv = document.getElementById('positionValueDiv');
+          const scoreValueDiv = document.getElementById('scoreValueDiv');
+          if (data[fileNumber]) {
+            positionValueDiv.innerHTML = `${data[fileNumber].position}`;
+            scoreValueDiv.innerHTML = `${data[fileNumber].score}`;
+            positionValueDiv.style.color = 'white';
+            scoreValueDiv.style.color = 'white';
+          } else {
+            positionValueDiv.innerHTML = 'No data found';
+            scoreValueDiv.innerHTML = '';
+            console.log('No data found for file number:', fileNumber);
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

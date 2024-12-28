@@ -1,0 +1,129 @@
+@font-face {
+  font-family: 'Fruity Juice';
+  src: url('https://assets.website-files.com/669bb0f3927d4a75d8fb2b55/669bb7accba4799bfbb71c20_Fruity%20Juice.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('https://assets.website-files.com/669bb0f3927d4a75d8fb2b55/669bb7ac2e4405005581f4cb_Inter-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  background: #000;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 31.25rem;
+  margin: 6rem auto;
+}
+
+img {
+    width: 100px;
+    height: auto;
+}
+
+h2 {
+    color: #000;
+    margin-top: 30px;
+    padding: 10px 10px;
+    font-family: 'Fruity Juice';
+     /* horizontal-offset vertical-offset 'blur' colour */
+    -webkit-text-stroke-color: white;
+    -webkit-text-stroke-width: 0.5px;
+}
+
+.label {
+  font-size: .625rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: +1.3px;
+  margin-bottom: 1rem;
+}
+
+.searchBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+}
+
+#searchQueryInput {
+  width: 30%;
+  height: 2.8rem;
+  background: #0f0f0f;
+  outline: none;
+  border: none;
+  border-radius: 0.3rem;
+  padding: 0 3.5rem 0 1.5rem;
+  font-size: 1rem;
+  margin: 0 auto;
+  color: #757565;
+  top: 50%;
+  left: 50%;
+  border: 1px solid #1c1c1c;
+}
+
+#searchQuerySubmit {
+  width: 3.5rem;
+  height: 2.8rem;
+  margin-left: -3.5rem;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+#searchQuerySubmit:hover {
+  cursor: pointer;
+}
+
+#result{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 18px;
+  color: rgb(243, 243, 243);
+  font-family: 'Fruity Juice';
+  letter-spacing: 1px;
+} 
+
+.result {
+  text-align: center;
+  display: flex;
+  margin: 5px auto;
+  width: fit-content;
+  font-family: 'Fruity Juice';
+  color: #fff;
+}
+
+div#positionLabelDiv {
+    padding: 5px 10px;
+}
+
+div#scoreLabelDiv {
+    padding: 5px 10px;
+}
+
+div#positionValueDiv {
+  background: #0f0f0f;
+  border-radius: 0.3rem;
+  padding: 5px 10px;
+  border: 1px solid #1c1c1c;
+  color: #ecdf1c !important;
+}
+
+div#scoreValueDiv {
+    background: #0f0f0f;
+    border-radius: 0.3rem;
+    padding: 5px 10px;
+    border: 1px solid #1c1c1c;
+    color: #ecdf1c !important;
+}
